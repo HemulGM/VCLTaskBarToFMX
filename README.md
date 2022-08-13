@@ -13,7 +13,6 @@ begin
   FTaskBar.ProgressValue := 32;
   with FTaskBar.TaskBarButtons.Add do
   begin
-    Icon := TIcon.Create;
     Icon.LoadFromFile('image.ico');
     Hint := '123';
   end;
