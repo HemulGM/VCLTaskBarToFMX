@@ -40,12 +40,12 @@ end;
 
 procedure TTaskbar.WndProcHook;
 var
-  FMXHandle: HWND;
+  Handle: HWND;
 begin
-  FMXHandle := ApplicationHWND;
-  FOldFMXWndProc := TFNWndProc(Winapi.Windows.GetWindowLong(FMXHandle, GWL_WNDPROC));
+  Handle := ApplicationHWND;
+  FOldFMXWndProc := TFNWndProc(Winapi.Windows.GetWindowLong(Handle, GWL_WNDPROC));
   FNewFMXWndProc := MakeObjectInstance(CustomWndProc);
-  Winapi.Windows.SetWindowLong(FMXHandle, GWL_WNDPROC, NativeInt(FNewFMXWndProc));
+  Winapi.Windows.SetWindowLong(Handle, GWL_WNDPROC, NativeInt(FNewFMXWndProc));
 end;
 
 procedure TTaskbar.CustomWndProc(var Msg: TMessage);
