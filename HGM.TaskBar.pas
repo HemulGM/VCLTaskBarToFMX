@@ -10,11 +10,13 @@ type
   private
     FOldFMXWndProc: Winapi.Windows.TFNWndProc;
     FNewFMXWndProc: Pointer;
+    FInited: Boolean;
     procedure WndProcHook;
     procedure CustomWndProc(var Msg: TMessage);
   protected
     function GetFormHandle: HWND; override;
   public
+    procedure Initialize; override;
     constructor Create(AOwner: TComponent); override;
   end;
 
@@ -31,6 +33,7 @@ uses
 
 constructor TTaskbar.Create(AOwner: TComponent);
 begin
+  FInited := False;
   inherited;
   WndProcHook;
 end;
@@ -39,7 +42,7 @@ procedure TTaskbar.WndProcHook;
 var
   FMXHandle: HWND;
 begin
-  FMXHandle := GetFormHandle;
+  FMXHandle := ApplicationHWND;
   FOldFMXWndProc := TFNWndProc(Winapi.Windows.GetWindowLong(FMXHandle, GWL_WNDPROC));
   FNewFMXWndProc := MakeObjectInstance(CustomWndProc);
   Winapi.Windows.SetWindowLong(FMXHandle, GWL_WNDPROC, NativeInt(FNewFMXWndProc));
@@ -73,12 +76,21 @@ begin
     end;
   end;
 
-  Msg.Result := CallWindowProc(FOldFMXWndProc, GetFormHandle, Msg.Msg, Msg.WParam, Msg.LParam);
+  Msg.Result := CallWindowProc(FOldFMXWndProc, ApplicationHWND, Msg.Msg, Msg.WParam, Msg.LParam);
 end;
 
 function TTaskbar.GetFormHandle: HWND;
 begin
-  Result := ApplicationHWND;
+  if FInited then
+    Result := ApplicationHWND
+  else
+    Result := 0;
+end;
+
+procedure TTaskbar.Initialize;
+begin
+  FInited := True;
+  inherited;
 end;
 
 initialization
