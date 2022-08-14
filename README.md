@@ -22,7 +22,7 @@ begin
     FTaskBar.TaskBarButtons.EndUpdate;
   end;
   
-  // call this, if you create buttons dynamicly
+  // call this, if you create buttons dynamicly (update added buttons)
   FTaskBar.Initialize;
   FTaskBar.ApplyButtonsChanges;
 end;
