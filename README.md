@@ -21,6 +21,10 @@ begin
   finally
     FTaskBar.TaskBarButtons.EndUpdate;
   end;
+  
+  // call this, if you create buttons dynamicly
+  FTaskBar.Initialize;
+  FTaskBar.ApplyButtonsChanges;
 end;
 
 procedure TForm3.FOnThumbClick(Sender: TObject; AButtonID: Integer);
