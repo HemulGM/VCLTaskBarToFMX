@@ -11,10 +11,15 @@ begin
   FTaskBar.ProgressState := TTaskBarProgressState.Normal;
   FTaskBar.ProgressMaxValue := 100;
   FTaskBar.ProgressValue := 32;
-  with FTaskBar.TaskBarButtons.Add do
-  begin
-    Icon.LoadFromFile('image.ico');
-    Hint := '123';
+  FTaskBar.TaskBarButtons.BeginUpdate;
+  try
+   with FTaskBar.TaskBarButtons.Add do
+   begin
+     Icon.LoadFromFile('image.ico');
+     Hint := '123';
+   end;
+  finally
+    FTaskBar.TaskBarButtons.EndUpdate;
   end;
 end;
 
