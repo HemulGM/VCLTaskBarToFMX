@@ -11,7 +11,7 @@ begin
   FTaskBar.ProgressState := TTaskBarProgressState.Normal;
   FTaskBar.ProgressMaxValue := 100;
   FTaskBar.ProgressValue := 32;
-  FTaskBar.TaskBarButtons.BeginUpdate;
+  FTaskBar.TaskBarButtons.BeginUpdate; //important
   try
    with FTaskBar.TaskBarButtons.Add do
    begin
