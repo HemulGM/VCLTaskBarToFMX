@@ -23,8 +23,8 @@ begin
   end;
   
   // call this, if you create buttons dynamicly (update added buttons)
-  FTaskBar.Initialize;
-  FTaskBar.ApplyButtonsChanges;
+  //FTaskBar.Initialize;
+  //FTaskBar.ApplyButtonsChanges;
 end;
 
 procedure TForm3.FOnThumbClick(Sender: TObject; AButtonID: Integer);
