@@ -2,7 +2,7 @@
  
 Example 
 ```Pascal
-uses HGM.TaskBar, Vcl.Graphics;
+uses HGM.TaskBar;
 
 procedure TForm3.FormCreate(Sender: TObject);
 begin
