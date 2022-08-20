@@ -32,3 +32,4 @@ begin
   ShowMessage(AButtonID.ToString);
 end;
 ```
+![HGMComponents](https://github.com/HemulGM/VCLTaskBarToFMX/blob/main/Media/screen1.png)
